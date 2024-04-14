@@ -117,7 +117,6 @@
     width: 196px;
     font-size: 22px;
     line-height: 26px;
-    font-weight: 500;
     grid-area: title;
     margin-top: 30px;
     margin-bottom: 14px;
@@ -129,7 +128,6 @@
     width: 282px;
     font-size: 14px;
     line-height: 17px;
-    font-weight: 400;
     grid-area: description;
     margin-bottom: 36px;
     text-align: center;
@@ -156,7 +154,6 @@
     height: 18px;
     width: 18px;
     background-size: 7.5px 7.5px;
-    border-radius: 2px;
     padding: 0;
     margin: 18px 0 0 10px;
   }
