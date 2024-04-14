@@ -47,9 +47,3 @@
 .card__like-button:hover {
   filter: invert(60%) sepia(0%) saturate(3672%);
 }
-
-@media screen and (max-width: 620px) {
-  .cards {
-    margin-top: 36px;
-  }
-}
