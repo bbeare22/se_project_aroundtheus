@@ -26,6 +26,6 @@ Good luck and have fun!
 
 3. I really liked working on this project. I liked working with display grid and media queries, it was challenging at first but now I feel like I have a good understanding of both. Id like to improve on the figma design by maybe adding a background image to the whole page just so its not just a black background. Something subtle obviously to not distract the user from the photo gallery. All in all it was a fun project to work on and I'm very happy with how it turned out.
 
-4. Video submission: https://drive.google.com/file/d/1gEOeUhtMkCOByucPRyGV4mojcR5jp_fr/view?usp=drive_link
+4. Video submission: https://drive.google.com/file/d/1gEOeUhtMkCOByucPRyGV4mojcR5jp_fr/view?usp=drive_link (You should have access to this now)
 
 5. Git pages: https://bbeare22.github.io/se_project_aroundtheus/
