@@ -117,7 +117,6 @@
     width: 196px;
     font-size: 22px;
     line-height: 26px;
-    grid-area: title;
     margin-top: 30px;
     margin-bottom: 14px;
     align-self: center;
@@ -128,7 +127,6 @@
     width: 282px;
     font-size: 14px;
     line-height: 17px;
-    grid-area: description;
     margin-bottom: 36px;
     text-align: center;
   }
