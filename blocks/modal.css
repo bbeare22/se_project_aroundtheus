@@ -34,6 +34,11 @@
   bottom: calc(100% + 5px);
   left: calc(100% + 5px);
   padding: 0;
+  transition: ease-in 0.3s;
+}
+
+.modal__close:hover {
+  filter: invert(60%) sepia(0%) saturate(3672%);
 }
 
 .modal__heading {
