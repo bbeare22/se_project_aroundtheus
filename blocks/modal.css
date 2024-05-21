@@ -9,7 +9,7 @@
   display: none;
 }
 
-.modal__opened {
+.modal_opened {
   display: flex;
 }
 
@@ -65,7 +65,7 @@
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 1);
+  border-bottom: 1px solid #808080;
 }
 
 .modal__input::placeholder {
@@ -76,12 +76,20 @@
   width: 358px;
   height: 50px;
   color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
   background-color: #000;
   margin-top: 18px;
   padding: 0;
   border: none;
   border-radius: 2px;
   cursor: pointer;
+  transition: ease-in 0.3s;
+}
+
+.modal__button:hover {
+  background-color: #808080;
 }
 
 @media screen and (max-width: 620px) {
@@ -112,5 +120,7 @@
     width: 238px;
     height: 46px;
     margin-top: 15px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
