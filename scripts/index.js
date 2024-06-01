@@ -49,12 +49,15 @@ const cardTitleInput = addCardFormElement.querySelector(
   ".modal__input_type_title"
 );
 const cardURLInput = addCardFormElement.querySelector(".modal__input_type_url");
-
-/* Functions */
+const previewModal = document.querySelector("#popup-preview-modal");
+const previewCloseButton = previewModal.querySelector(".modal__close");
+const modalImageElement = previewModal.querySelector(".modal__image");
+const modalCaption = previewModal.querySelector(".modal__caption");
 
 function closePopup() {
   profileEditModal.classList.remove("modal_opened");
   addCardbuttonModal.classList.remove("modal_opened");
+  previewModal.classList.remove("modal_opened");
 }
 
 function getCardElement(cardData) {
@@ -72,6 +75,12 @@ function getCardElement(cardData) {
     cardElement.remove();
   });
 
+  cardImageEl.addEventListener("click", () => {
+    modalImageElement.src = cardData.link;
+    modalCaption.textContent = cardData.name;
+    previewModal.classList.add("modal_opened");
+  });
+
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
@@ -83,8 +92,6 @@ function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
   wrapper.append(cardElement);
 }
-
-/* Event Handlers */
 
 function handleProfileEditSubmit(e) {
   e.preventDefault();
@@ -101,8 +108,6 @@ function handleAddCardFormSubmit(e) {
   closePopup(addCardbuttonModal);
 }
 
-/* Event Listeners */
-
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -115,6 +120,7 @@ addCardButton.addEventListener("click", () => {
 
 profileCloseButton.addEventListener("click", closePopup);
 addCardCloseButton.addEventListener("click", closePopup);
+previewCloseButton.addEventListener("click", closePopup);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);

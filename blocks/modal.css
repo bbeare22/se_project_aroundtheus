@@ -21,6 +21,31 @@
   border-radius: 10px;
 }
 
+.modal__container_type_image {
+  display: flex;
+  background: none;
+  padding: 0;
+  max-width: 75vh;
+  max-height: 75vh;
+  width: auto;
+  height: auto;
+}
+
+.modal__image {
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.modal__caption {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  position: absolute;
+  color: #fff;
+  margin: 0;
+  top: calc(100% + 10px);
+}
+
 .modal__close {
   background-image: url(../images/Close\ Icon.svg);
   border: none;
