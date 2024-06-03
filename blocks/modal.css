@@ -91,10 +91,6 @@
   transition: ease-in 0.3s;
 }
 
-.modal__popup_close:hover {
-  filter: invert(60%) sepia(0%) saturate(3672%);
-}
-
 .modal__heading {
   width: 330px;
   height: 23px;
@@ -161,6 +157,8 @@
   .modal__popup_close {
     width: 30px;
     height: 30px;
+    bottom: calc(100% + -45px);
+    left: calc(100% + -45px);
   }
 
   .modal__heading {

@@ -1,28 +1,27 @@
 const initialCards = [
   {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
   {
-    name: "Lake Lousie",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+    name: "Vanoise National Park",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
   },
   {
     name: "Bald Mountains",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
   },
   {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  ,
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+    name: "Lake Lousie",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
   },
   {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+    name: "Yosemite Valley",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
   },
 ];
 
@@ -48,14 +47,16 @@ const cardTitleInput = addCardFormElement.querySelector(
 );
 const cardURLInput = addCardFormElement.querySelector(".modal__input_type_url");
 const previewModal = document.querySelector("#popup-preview-modal");
-const previewCloseButton = previewModal.querySelector(".modal__popup_close");
+const previewCloseButton = previewModal.querySelector(".modal__close");
 const modalImageElement = previewModal.querySelector(".modal__image");
 const modalCaption = previewModal.querySelector(".modal__caption");
 
-function closePopup() {
-  profileEditModal.classList.remove("modal_opened");
-  addCardbuttonModal.classList.remove("modal_opened");
-  previewModal.classList.remove("modal_opened");
+function openPopup(popup) {
+  popup.classList.add("modal_opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("modal_opened");
 }
 
 function getCardElement(cardData) {
@@ -75,8 +76,9 @@ function getCardElement(cardData) {
 
   cardImageEl.addEventListener("click", () => {
     modalImageElement.src = cardData.link;
+    modalImageElement.alt = cardData.name;
     modalCaption.textContent = cardData.name;
-    previewModal.classList.add("modal_opened");
+    openPopup(previewModal);
   });
 
   cardImageEl.src = cardData.link;
@@ -88,7 +90,7 @@ function getCardElement(cardData) {
 
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
-  wrapper.append(cardElement);
+  wrapper.prepend(cardElement);
 }
 
 function handleProfileEditSubmit(e) {
@@ -109,16 +111,19 @@ function handleAddCardFormSubmit(e) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
+  openPopup(profileEditModal);
 });
 
 addCardButton.addEventListener("click", () => {
-  addCardbuttonModal.classList.add("modal_opened");
+  openPopup(addCardbuttonModal);
 });
 
-profileCloseButton.addEventListener("click", closePopup);
-addCardCloseButton.addEventListener("click", closePopup);
-previewCloseButton.addEventListener("click", closePopup);
+const closeButtons = document.querySelectorAll(".modal__close");
+
+closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
+  button.addEventListener("click", () => closePopup(popup));
+});
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
