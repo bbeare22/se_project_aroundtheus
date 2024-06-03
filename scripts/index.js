@@ -106,6 +106,7 @@ function handleAddCardFormSubmit(e) {
   const link = cardURLInput.value;
   renderCard({ name, link }, cardListEl);
   closePopup(addCardbuttonModal);
+  e.target.reset();
 }
 
 profileEditButton.addEventListener("click", () => {
