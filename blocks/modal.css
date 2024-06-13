@@ -118,6 +118,10 @@
   border-bottom: 1px solid #808080;
 }
 
+.modal__input_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
 .modal__input::placeholder {
   color: #c4c4c4;
 }
@@ -138,8 +142,22 @@
   transition: ease-in 0.3s;
 }
 
+.modal__button_disabled {
+  background-color: #808080;
+}
+
 .modal__button:hover {
   background-color: #808080;
+}
+
+.modal__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  transition: opacity 0.3s;
 }
 
 @media screen and (max-width: 620px) {
