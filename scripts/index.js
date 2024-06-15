@@ -93,24 +93,6 @@ function renderCard(cardData, wrapper) {
   wrapper.prepend(cardElement);
 }
 
-document.addEventListener("keyup", (event) => {
-  if (event.key === "Escape") {
-    closePopup(profileEditModal, addCardbuttonModal, previewModal);
-  }
-});
-
-document.addEventListener("keyup", (event) => {
-  if (event.key === "Escape") {
-    closePopup(addCardbuttonModal);
-  }
-});
-
-document.addEventListener("keyup", (event) => {
-  if (event.key === "Escape") {
-    closePopup(previewModal);
-  }
-});
-
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -170,6 +152,24 @@ previewModal.addEventListener("mousedown", (evt) => {
     evt.target.classList.contains("modal") ||
     evt.target.classList.contains("modal__close")
   ) {
+    closePopup(previewModal);
+  }
+});
+
+document.addEventListener("keyup", (event) => {
+  if (event.key === "Escape") {
+    closePopup(profileEditModal);
+  }
+});
+
+document.addEventListener("keyup", (event) => {
+  if (event.key === "Escape") {
+    closePopup(addCardbuttonModal);
+  }
+});
+
+document.addEventListener("keyup", (event) => {
+  if (event.key === "Escape") {
     closePopup(previewModal);
   }
 });
