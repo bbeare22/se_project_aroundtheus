@@ -92,10 +92,10 @@ function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
   wrapper.prepend(cardElement);
 }
-
+////
 const isEscEvent = (evt, action) => {
   const activePopup = document.querySelector("modal_opened");
-  if (evt.key == "Escape") {
+  if (evt.key === "escape") {
     action(activePopup);
   }
 };
@@ -114,7 +114,7 @@ const handleEscUp = (evt) => {
   evt.preventDefault();
   isEscEvent(evt, closeModal);
 };
-
+////
 function handleProfileEditSubmit(e) {
   e.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -165,7 +165,7 @@ addCardbuttonModal.addEventListener("mousedown", (evt) => {
     evt.target.classList.contains("modal") ||
     evt.target.classList.contains("modal__close")
   ) {
-    closeModal(profileEditModal);
+    closeModal(addCardbuttonModal);
   }
 });
 
@@ -174,7 +174,7 @@ previewModal.addEventListener("mousedown", (evt) => {
     evt.target.classList.contains("modal") ||
     evt.target.classList.contains("modal__close")
   ) {
-    closeModal(profileEditModal);
+    closeModal(previewModal);
   }
 });
 
