@@ -51,15 +51,6 @@ const previewCloseButton = previewModal.querySelector(".modal__close");
 const modalImageElement = previewModal.querySelector(".modal__image");
 const modalCaption = previewModal.querySelector(".modal__caption");
 
-///--- Old Code---///
-//function openPopup(popup) {
-//popup.classList.add("modal_opened");
-//}
-
-//function closePopup(popup) {
-//popup.classList.remove("modal_opened");
-//}
-
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
@@ -120,46 +111,31 @@ addCardButton.addEventListener("click", () => {
   openPopup(addCardbuttonModal);
 });
 
-const closeButtons = document.querySelectorAll(".modal__close");
-
-closeButtons.forEach((button) => {
-  const popup = button.closest(".modal");
-  button.addEventListener("click", () => closePopup(popup));
-});
-
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
-profileEditModal.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopup(profileEditModal);
-  }
+[profileEditModal, addCardbuttonModal, previewModal].forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (
+      evt.target.classList.contains("modal") ||
+      evt.target.classList.contains("modal__close")
+    ) {
+      closePopup(popup);
+    }
+  });
 });
 
-addCardbuttonModal.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopup(addCardbuttonModal);
-  }
-});
-
-previewModal.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("modal") ||
-    evt.target.classList.contains("modal__close")
-  ) {
-    closePopup(previewModal);
-  }
-});
+//---Old Code---///
+//const escEvent = (evt, action) => {
+//const activePopup = document.querySelector(".modal_opened");
+//if (evt.key === "Escape") {
+//action(activePopup);
+//}
+//};
 
 const escEvent = (evt, action) => {
   const activePopup = document.querySelector(".modal_opened");
-  if (evt.key === "Escape") {
+  if (evt.target.classList.contains(".modal_opened") || evt.key === "Escape") {
     action(activePopup);
   }
 };
@@ -178,24 +154,5 @@ const handleEscUp = (evt) => {
   evt.preventDefault();
   escEvent(evt, closePopup);
 };
-
-///--- Old Code---///
-//document.addEventListener("keyup", (event) => {
-//if (event.key === "Escape") {
-//closePopup(profileEditModal);
-//}
-//});
-
-//document.addEventListener("keyup", (event) => {
-//if (event.key === "Escape") {
-//closePopup(addCardbuttonModal);
-//}
-//});
-
-//document.addEventListener("keyup", (event) => {
-//if (event.key === "Escape") {
-//closePopup(previewModal);
-//}
-//});
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
