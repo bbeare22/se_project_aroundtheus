@@ -125,18 +125,12 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
   });
 });
 
-//---Old Code---///
-//const escEvent = (evt, action) => {
-//const activePopup = document.querySelector(".modal_opened");
-//if (evt.key === "Escape") {
-//action(activePopup);
-//}
-//};
-
 const escEvent = (evt, action) => {
-  const activePopup = document.querySelector(".modal_opened");
-  if (evt.target.classList.contains("modal_opened") || evt.key === "Escape") {
-    action(activePopup);
+  if (evt.key === "Escape") {
+    const activePopup = document.querySelector(".modal_opened");
+    {
+      action(activePopup);
+    }
   }
 };
 
