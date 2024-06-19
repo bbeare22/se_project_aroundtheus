@@ -135,7 +135,7 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 const escEvent = (evt, action) => {
   const activePopup = document.querySelector(".modal_opened");
-  if (evt.target.classList.contains(".modal_opened") || evt.key === "Escape") {
+  if (evt.target.classList.contains("modal_opened") || evt.key === "Escape") {
     action(activePopup);
   }
 };
