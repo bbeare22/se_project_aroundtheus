@@ -51,13 +51,14 @@ const previewCloseButton = previewModal.querySelector(".modal__close");
 const modalImageElement = previewModal.querySelector(".modal__image");
 const modalCaption = previewModal.querySelector(".modal__caption");
 
-function openPopup(popup) {
-  popup.classList.add("modal_opened");
-}
+///--- Old Code---///
+//function openPopup(popup) {
+//popup.classList.add("modal_opened");
+//}
 
-function closePopup(popup) {
-  popup.classList.remove("modal_opened");
-}
+//function closePopup(popup) {
+//popup.classList.remove("modal_opened");
+//}
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -156,22 +157,45 @@ previewModal.addEventListener("mousedown", (evt) => {
   }
 });
 
-document.addEventListener("keyup", (event) => {
-  if (event.key === "Escape") {
-    closePopup(profileEditModal);
+const escEvent = (evt, action) => {
+  const activePopup = document.querySelector(".modal_opened");
+  if (evt.key === "Escape") {
+    action(activePopup);
   }
-});
+};
 
-document.addEventListener("keyup", (event) => {
-  if (event.key === "Escape") {
-    closePopup(addCardbuttonModal);
-  }
-});
+const openPopup = (popup) => {
+  popup.classList.add("modal_opened");
+  document.addEventListener("keyup", handleEscUp);
+};
 
-document.addEventListener("keyup", (event) => {
-  if (event.key === "Escape") {
-    closePopup(previewModal);
-  }
-});
+const closePopup = (popup) => {
+  popup.classList.remove("modal_opened");
+  document.removeEventListener("keyup", handleEscUp);
+};
+
+const handleEscUp = (evt) => {
+  evt.preventDefault();
+  escEvent(evt, closePopup);
+};
+
+///--- Old Code---///
+//document.addEventListener("keyup", (event) => {
+//if (event.key === "Escape") {
+//closePopup(profileEditModal);
+//}
+//});
+
+//document.addEventListener("keyup", (event) => {
+//if (event.key === "Escape") {
+//closePopup(addCardbuttonModal);
+//}
+//});
+
+//document.addEventListener("keyup", (event) => {
+//if (event.key === "Escape") {
+//closePopup(previewModal);
+//}
+//});
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
