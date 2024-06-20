@@ -125,7 +125,7 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
   });
 });
 
-const isescEvent = (evt, action) => {
+const isEscEvent = (evt, action) => {
   if (evt.key === "Escape") {
     const activePopup = document.querySelector(".modal_opened");
     activePopup && action(activePopup);
@@ -144,7 +144,7 @@ const closePopup = (popup) => {
 
 const handleEscUp = (evt) => {
   evt.preventDefault();
-  isescEvent(evt, closePopup);
+  isEscEvent(evt, closePopup);
 };
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
