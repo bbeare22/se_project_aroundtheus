@@ -11,6 +11,12 @@
   border-radius: 10px 10px 0 0;
 }
 
+.card__image:hover {
+  opacity: 0.5;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
 .card__description {
   display: flex;
   background-color: #fff;
