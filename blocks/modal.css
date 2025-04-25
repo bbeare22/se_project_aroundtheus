@@ -147,6 +147,7 @@
   color: #808080;
   border: 1px solid #808080;
   border-radius: 2px;
+  pointer-events: none;
 }
 
 .modal__button:hover {

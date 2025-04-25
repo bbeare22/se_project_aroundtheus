@@ -41,7 +41,7 @@ const addCardbuttonModal = document.querySelector("#add-card-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardbuttonModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
-const cardTemplate = document.querySelector("#card-template");
+const cardSelector = document.querySelector("#card-template");
 const cardTitleInput = addCardFormElement.querySelector(
   ".modal__input_type_title"
 );
@@ -65,7 +65,10 @@ const editFormValidator = new FormValidator(
   profileEditForm
 );
 editFormValidator.enableValidation();
-const addFormValidator = new FormValidator(validationSettings, profileEditForm);
+const addFormValidator = new FormValidator(
+  validationSettings,
+  addCardFormElement
+);
 addFormValidator.enableValidation();
 
 // Functions \\
@@ -81,7 +84,7 @@ function closeModal(modal) {
 }
 
 function getCardElement(cardData) {
-  const card = new Card(cardData, cardTemplate, handleImageClick);
+  const card = new Card(cardData, cardSelector, handleImageClick);
   return card.getView();
 }
 
@@ -144,7 +147,7 @@ function handleCardAddSubmit(e) {
 profileEditButton.addEventListener("click", openProfileForm);
 profileEditForm.addEventListener("submit", handleProfileSubmit);
 addCardButton.addEventListener("click", () => openModal(addCardbuttonModal));
-addCardFormElement.addEventListener("submit", () => handleCardAddSubmit);
+addCardFormElement.addEventListener("submit", handleCardAddSubmit);
 
 // Loops \\
 initialCards.forEach((cardData) => {

@@ -40,7 +40,7 @@ export default class FormValidator {
   }
 
   _hasInvalidInput() {
-    return !this._inputEls.every((inputEl) => inputEl.validity.valid);
+    return this._inputEls.some((inputEl) => !inputEl.validity.valid);
   }
 
   _toggleButtonState() {
