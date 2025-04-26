@@ -27,10 +27,15 @@ export default class Card {
     this._cardElement = null;
   }
 
-  getView() {
-    this._cardElement = this._cardSelector.content
-      .querySelector(".card")
+  _getTemplate() {
+    return document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
       .cloneNode(true);
+  }
+
+  getView() {
+    this._cardElement = this._getTemplate();
     this._cardImageEl = this._cardElement.querySelector(".card__image");
     this._cardTitleEl = this._cardElement.querySelector(".card__title");
     this._trashBtnEl = this._cardElement.querySelector(".card__delete-button");
