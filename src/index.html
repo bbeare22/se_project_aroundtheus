@@ -4,17 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around The U.S</title>
-    <meta name="description" content="Around The U.S Project 3" />
+    <meta name="description" content="Around the US" />
     <meta name="author" content="Brett Beare" />
     <meta name="keywords" content="HTML, CSS" />
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/around-the-world.svg"
+          src="<%=require('./images/around-the-world.svg')%>"
           alt="Around the U.S Logo"
           class="header__logo"
         />
@@ -22,18 +21,20 @@
       <main class="content">
         <section class="profile page__section">
           <img
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Avatar"
             class="profile__image"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
               id="profile-edit-button"
               type="button"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description" id="profile-description">
+              Explorer
+            </p>
           </div>
           <button
             class="profile__add-button"
@@ -73,9 +74,9 @@
             <input
               type="text"
               class="modal__input"
-              name="description"
+              name="job"
               id="profile-description-input"
-              placeholder="Description"
+              placeholder="Job"
               minlength="2"
               maxlength="200"
               required
@@ -93,7 +94,11 @@
     <!--Add card modal-->
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
-        <button class="modal__close" type="button"></button>
+        <button
+          class="modal__close"
+          id="modal-close-button"
+          type="button"
+        ></button>
         <p class="modal__heading">New Place</p>
         <form class="modal__form" id="add-card-form">
           <label class="modal__label">
@@ -135,8 +140,8 @@
     <div class="modal" id="popup-preview-modal">
       <div class="modal__container modal__container_type_image">
         <button class="modal__close modal__popup_close" type="button"></button>
-        <img class="modal__image" src="" alt="" />
-        <p class="modal__caption"></p>
+        <img class="modal__image" id="image-modal-image" src="" alt="" />
+        <p class="modal__caption" id="modal-caption"></p>
       </div>
     </div>
 
@@ -150,7 +155,5 @@
         </div>
       </li>
     </template>
-
-    <script src="./pages/index.js" type="module"></script>
   </body>
 </html>
