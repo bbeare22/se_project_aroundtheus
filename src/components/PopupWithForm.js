@@ -21,11 +21,7 @@ export default class PopupWithForm extends Popup {
   setInputValues(data) {
     this._inputs.forEach((input) => {
       const value = data[input.name];
-      if (typeof value === "string") {
-        input.value = value.trim();
-      } else {
-        input.value = "";
-      }
+      input.value = typeof value === "string" ? value.trim() : "";
     });
   }
 
@@ -33,13 +29,20 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues())
+      const formData = this._getInputValues();
+
+      this.renderLoading(true);
+
+      this._handleFormSubmit(formData)
         .then(() => {
-          this._form.reset(); // Reset form ONLY after successful submission
-          this.close(); // Close popup after submission
+          this._form.reset();
+          this.close();
         })
         .catch((err) => {
           console.error("Form submission failed:", err);
+        })
+        .finally(() => {
+          this.renderLoading(false);
         });
     });
   }
