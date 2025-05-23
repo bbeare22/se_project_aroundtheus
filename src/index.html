@@ -20,11 +20,18 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__avatar-wrapper">
+            <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+            <button
+              class="profile__avatar-edit-button"
+              type="button"
+              aria-label="Edit avatar"
+            ></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
             <button
@@ -55,7 +62,7 @@
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
-        <p class="modal__heading">Edit Profile</p>
+        <h2 class="modal__heading">Edit Profile</h2>
         <form class="modal__form" id="edit-profile-form">
           <label class="modal__label">
             <input
@@ -74,7 +81,7 @@
             <input
               type="text"
               class="modal__input"
-              name="job"
+              name="about"
               id="profile-description-input"
               placeholder="Job"
               minlength="2"
@@ -99,7 +106,7 @@
           id="modal-close-button"
           type="button"
         ></button>
-        <p class="modal__heading">New Place</p>
+        <h2 class="modal__heading">New Place</h2>
         <form class="modal__form" id="add-card-form">
           <label class="modal__label">
             <input
@@ -136,6 +143,39 @@
       </div>
     </div>
 
+    <!-- Avatar Edit Modal -->
+    <div class="modal" id="avatar-edit-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+        <form class="modal__form" id="avatar-edit-form">
+          <label class="modal__label">
+            <input
+              type="url"
+              class="modal__input"
+              name="avatar"
+              id="avatar-url-input"
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="avatar-url-input-error"></span>
+          </label>
+          <button type="submit" class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div class="modal" id="confirm-delete-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <h2 class="modal__heading">Are you sure?</h2>
+        <form class="modal__form" name="confirm-delete">
+          <button class="modal__button" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
     <!--Image Preview Modal-->
     <div class="modal" id="popup-preview-modal">
       <div class="modal__container modal__container_type_image">
@@ -145,9 +185,10 @@
       </div>
     </div>
 
+    <!-- Card Template -->
     <template id="card-template">
       <li class="card">
-        <img src="" class="card__image" alt="" id="card-picture" />
+        <img src="" class="card__image" alt="" />
         <button type="button" class="card__delete-button"></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
