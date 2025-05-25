@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     avatarSelector: ".profile__image",
   });
 
-  // Validators
   editFormValidator = new FormValidator(
     validationSettings,
     dom.profileEditForm
@@ -53,19 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   avatarFormValidator.enableValidation();
 
-  // Confirm Delete Modal
   const confirmDeletePopup = new PopupWithConfirm({
     popupSelector: "#confirm-delete-modal",
   });
   confirmDeletePopup.setEventListeners();
 
-  // Card Section
   cardSection = new Section(
     { items: [], renderer: renderCard },
     selectors.cardSection
   );
 
-  // Add Card Popup
   const cardAddPopupWithForm = new PopupWithForm(
     "#add-card-modal",
     (values) => {
@@ -73,17 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
         .addCard({ name: values.title, link: values.url })
         .then((newCard) => {
           renderCard(newCard);
-          cardAddPopupWithForm.close(); // ← close on success
           addFormValidator.disableSubmitButton();
-        })
-        .catch((err) => {
-          console.error("Error adding card:", err);
         });
     }
   );
   cardAddPopupWithForm.setEventListeners();
 
-  // Edit Profile Popup
   const profileEditPopup = new PopupWithForm(
     "#profile-edit-modal",
     (values) => {
@@ -91,42 +82,27 @@ document.addEventListener("DOMContentLoaded", () => {
         .updateUserInfo({ name: values.name, about: values.about })
         .then((updatedUser) => {
           userInfo.setUserInfo(updatedUser);
-        })
-        .catch((err) => {
-          console.error("Error updating profile:", err);
         });
     }
   );
   profileEditPopup.setEventListeners();
 
-  // Edit Avatar Popup
   const avatarEditPopup = new PopupWithForm("#avatar-edit-modal", (values) => {
-    return api
-      .updateAvatar(values.avatar)
-      .then((res) => {
-        userInfo.setAvatar(res.avatar);
-      })
-      .catch((err) => {
-        console.error("Error updating avatar:", err);
-      });
+    return api.updateAvatar(values.avatar).then((res) => {
+      userInfo.setAvatar(res.avatar);
+    });
   });
   avatarEditPopup.setEventListeners();
 
-  // Image Preview Popup
   const imagePopup = new PopupWithImage("#popup-preview-modal");
   imagePopup.setEventListeners();
 
-  // Load initial data
-  api
-    .getAppData()
-    .then(([userData, cards]) => {
-      userId = userData._id;
-      userInfo.setUserInfo(userData);
-      cardSection.renderItems(cards);
-    })
-    .catch((err) => console.error("Initialization error:", err));
+  api.getAppData().then(([userData, cards]) => {
+    userId = userData._id;
+    userInfo.setUserInfo(userData);
+    cardSection.renderItems(cards);
+  });
 
-  // Renders a single card, wiring up delete confirmation
   function renderCard(item) {
     const card = new Card(
       item,
@@ -141,19 +117,35 @@ document.addEventListener("DOMContentLoaded", () => {
               cardInstance.removeCard();
               confirmDeletePopup.close();
             })
-            .catch((err) => console.error("Error deleting card:", err))
             .finally(() => {
               confirmDeletePopup.renderSaving(false);
             });
         });
         confirmDeletePopup.open();
-      }
+      },
+      (cardInstance) => {
+        const cardId = cardInstance.getId();
+        const isLiked = cardInstance.isLiked();
+
+        const request = isLiked ? api.unlikeCard(cardId) : api.likeCard(cardId);
+
+        request
+          .then((updatedCard) => {
+            if (typeof updatedCard.isLiked !== "boolean") {
+              throw new Error("Invalid like response");
+            }
+            cardInstance.updateLikes(updatedCard);
+          })
+          .catch((err) => {
+            console.error("Failed to toggle like:", err);
+          });
+      },
+      userId
     );
 
     cardSection.addItem(card.getView());
   }
 
-  // Button listeners
   dom.profileEditButton.addEventListener("click", () => {
     editFormValidator.resetValidation();
     profileEditPopup.setInputValues(userInfo.getUserInfo());
@@ -170,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
     avatarEditPopup.open();
   });
 
-  // Image click handler
   function handleImageClick(cardData) {
     imagePopup.open(cardData);
   }

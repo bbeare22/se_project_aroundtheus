@@ -53,12 +53,22 @@ export default class Api {
   likeCard(cardId) {
     return this._request(`/cards/${cardId}/likes`, {
       method: "PUT",
+    }).then((res) => {
+      if (!res || typeof res.isLiked !== "boolean") {
+        throw new Error("Invalid like response");
+      }
+      return res;
     });
   }
 
-  dislikeCard(cardId) {
+  unlikeCard(cardId) {
     return this._request(`/cards/${cardId}/likes`, {
       method: "DELETE",
+    }).then((res) => {
+      if (!res || typeof res.isLiked !== "boolean") {
+        throw new Error("Invalid unlike response");
+      }
+      return res;
     });
   }
 
@@ -66,24 +76,3 @@ export default class Api {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);
   }
 }
-
-// Example usage for testing
-/*
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "806a2baa-081d-4321-b473-e51300bcf632",
-    "Content-Type": "application/json",
-  },
-});
-
-api
-  .getAppData()
-  .then(([userInfo, cards]) => {
-    console.log("User Info:", userInfo);
-    console.log("Initial Cards:", cards);
-  })
-  .catch((err) => {
-    console.error("API load error:", err);
-  });
-*/
