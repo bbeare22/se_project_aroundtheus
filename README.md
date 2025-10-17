@@ -1,31 +1,131 @@
-# Project 3: Around The U.S.
+# 🗺️ Around the U.S. — Interactive Photo Gallery
 
-### Overview
+A responsive, interactive photo-sharing project built with **vanilla JavaScript**, **HTML**, and **CSS** using the **BEM methodology**.  
+Developed as part of the **TripleTen Software Engineering Program**.
 
-- Intro
-- Figma
-- Images
+---
 
-**Intro**
+## 🌟 Overview
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+This project simulates a simple social-style photo gallery where users can:
+- Edit their profile name and description  
+- Add new photo cards with title and image  
+- Like or remove existing cards  
+- View images in a modal popup  
 
-**Figma**
+---
 
-- [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
+## 🧱 Project Architecture
 
-**Images**
+Built with an object-oriented modular structure using ES6 classes for scalability and reusability.
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
+**Key modules:**
+- `Card.js` — Handles card creation, rendering, likes, and deletion  
+- `FormValidator.js` — Manages form validation and input feedback  
+- `Popup.js` — Base class for modal popups  
+- `PopupWithForm.js` — Extends popup for forms (edit/add)  
+- `PopupWithImage.js` — Extends popup for viewing full-size images  
+- `UserInfo.js` — Manages and renders user profile information  
+- `Section.js` — Handles rendering lists of items (cards)  
 
-Good luck and have fun!
+---
 
-1. Project 3 Around the U.S.
+## 🧰 Tech Stack
 
-2. In this project I had to create an adaptive website to fit multiple screen sizes. Resolution ranging from 320px to 1280px and higher. The project brief showed a photo gallery arranged from 3 photos wide and 2 photos tall. In order to complete this project I had to use display grid with grid-template-columns: auto-fit to get the photo gallery to be adaptive to the different screen sizes. Once that challenge was complete I moved onto media queries. I used media queries at different resolutions in order to get the webpage to match the figma brief and not break the design. The first media querie I used was at 1100px to add padding to the sides of the webpage to get rid of sticky elements when the resolution size gets smaller. the next media querie was at 770px to help the profile info not get smashed together at the tablet resolution. The last media querie was used at 620px to fit small mobile devices when the photos became one column. Once that was complete then I moved onto matching the figma font/ margins.
+- **JavaScript (ES6 Modules)**  
+- **HTML5 / CSS3**  
+- **BEM (Block, Element, Modifier)**  
+- **Webpack** for bundling  
+- **PostCSS + Autoprefixer**  
+- **Babel** for ES6 transpilation  
 
-3. I really liked working on this project. I liked working with display grid and media queries, it was challenging at first but now I feel like I have a good understanding of both. Id like to improve on the figma design by maybe adding a background image to the whole page just so its not just a black background. Something subtle obviously to not distract the user from the photo gallery. All in all it was a fun project to work on and I'm very happy with how it turned out.
+---
 
-4. Video submission: https://drive.google.com/file/d/1gEOeUhtMkCOByucPRyGV4mojcR5jp_fr/view?usp=drive_link (You should have access to this now)
+## ⚙️ Installation & Setup
 
-5. Git pages: https://bbeare22.github.io/se_project_aroundtheus/
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/bbeare22/se_project_aroundtheus
+cd se_project_aroundtheus-main
+```
+
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
+
+### 3️⃣ Run the Development Server
+```bash
+npm run dev
+```
+
+### 4️⃣ Build for Production
+```bash
+npm run build
+```
+
+---
+
+## 🧩 Project Structure
+
+```
+se_project_aroundtheus-main/
+├── src/
+│   ├── index.html
+│   ├── pages/
+│   │   ├── index.css
+│   │   └── index.js
+│   ├── blocks/           # BEM CSS files
+│   ├── components/       # JS classes (Card, Popup, FormValidator, etc.)
+│   ├── images/           # Assets and icons
+│   ├── utils/            # Constants
+│   └── vendor/           # Fonts and normalize.css
+├── package.json
+├── webpack.config.js
+└── README.md
+```
+
+---
+
+## 🎨 Features
+
+- **Responsive design** (optimized for mobile, tablet, and desktop)  
+- **Reusable form and popup components**  
+- **Dynamic rendering of photo cards**  
+- **Client-side validation for all forms**  
+- **Modular and maintainable codebase**  
+
+---
+
+## 📜 Scripts
+
+| Command | Description |
+|----------|-------------|
+| `npm run dev` | Start the local development server |
+| `npm run build` | Build the production bundle |
+
+---
+
+## 🧩 Technologies Used
+
+| Tool | Purpose |
+|------|----------|
+| Webpack | Module bundler |
+| Babel | JavaScript transpilation |
+| PostCSS | CSS post-processing |
+| Autoprefixer | Vendor prefix management |
+| CSSNano | CSS minification |
+| HTML Webpack Plugin | HTML template handling |
+
+---
+
+## 💡 Future Improvements
+
+- Add API integration for saving user data and cards  
+- Add persistent storage (localStorage or backend)  
+- Implement real user authentication  
+- Animate transitions between popups  
+
+---
+
+✨ *Around the U.S. — Explore, share, and connect through photos.*
