@@ -1,37 +1,10 @@
-export const initialCards = [
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Lake Lousie",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-];
-
-//
-
+// === Selectors ===
 export const selectors = {
   cardSection: ".cards__list",
   cardTemplate: "#card-template",
 };
 
+// === Validation Settings ===
 export const validationSettings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
@@ -40,34 +13,43 @@ export const validationSettings = {
   errorClass: "modal__error_visible",
 };
 
-//
-
+// === DOM Elements Getter ===
 export function getDOMElements() {
   const profile = document.querySelector(".profile");
-  const cardAdd = document.querySelector("#add-card-modal");
+  const cardAddModal = document.querySelector("#add-card-modal");
   const imageModal = document.querySelector("#popup-preview-modal");
+  const avatarModal = document.querySelector("#avatar-edit-modal");
 
   return {
     profile,
     profileEditButton: profile.querySelector("#profile-edit-button"),
     profileTitle: profile.querySelector("#profile-title"),
     profileDescription: profile.querySelector("#profile-description"),
-    cardListEl: document.querySelector(".cards__list"),
-    cardTemplate: document.querySelector("#card-template"),
+
     cardAddButton: profile.querySelector("#card-add-button"),
+    cardListEl: document.querySelector(selectors.cardSection),
+    cardTemplate: document.querySelector(selectors.cardTemplate),
+
     profileEdit: document.querySelector("#profile-edit-modal"),
     profileEditForm: document.querySelector("#edit-profile-form"),
     profileTitleInput: document.querySelector("#profile-title-input"),
     profileDescriptionInput: document.querySelector(
       "#profile-description-input"
     ),
-    cardAdd,
+
+    cardAdd: cardAddModal,
     cardAddForm: document.querySelector("#add-card-form"),
-    cardTitleInput: cardAdd.querySelector(".modal__input_type_title"),
-    cardImageInput: cardAdd.querySelector("#card-description-input"),
-    cardURLInput: cardAdd.querySelector(".modal__input_type_url"),
+    cardTitleInput: cardAddModal.querySelector(".modal__input_type_title"),
+    cardImageInput: cardAddModal.querySelector("#card-description-input"),
+    cardURLInput: cardAddModal.querySelector(".modal__input_type_url"),
+
     imageModal,
     imageModalImage: imageModal.querySelector("#image-modal-image"),
     imageModalCaption: imageModal.querySelector("#modal-caption"),
+
+    avatarEditForm: avatarModal.querySelector(".modal__form"),
+    avatarEditButton: document.querySelector(".profile__avatar-edit-button"),
+
+    confirmDeleteModal: document.querySelector("#confirm-delete-modal"),
   };
 }
